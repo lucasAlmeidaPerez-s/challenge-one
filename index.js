@@ -19,7 +19,7 @@ app.use(cors())
 //database connection
 const options = { reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true }
 
-mongoose.connect('mongodb+srv://admin:lual1108@cluster0-aab5c.mongodb.net/test?retryWrites=true&w=majority', options)
+mongoose.connect('process.env.MONGO_URI', options)
 
 mongoose.set('useCreateIndex', true)
 
