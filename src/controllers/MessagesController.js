@@ -5,13 +5,17 @@ const Message =  mongoose.model('Messages')
 module.exports={
 	//Recover all messages that are in a specific chat
 	async retrieveMessagesByChatId(req,res){
-		const messages = await Message.find({chatId:req.params.id})
+		//Get the page parameter in the request
+		const { page = 1 } = req.query
+		const messages = await Message.paginate({chatId:req.params.id},{page, limit:10})
 
 		return res.json(messages)
 	},
 	//Recover all messages independently of the chat
 	async allMessages(req,res){
-		const messages = await Message.find()
+		//Get the page parameter in the request
+		const { page = 1 } = req.query
+		const messages = await Message.paginate({},{page, limit:10})
 
 		return res.json(messages)
 	},

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+//Import mongoose-paginate. It's usefull when the document have many data
+const mongoosePaginate = require('mongoose-paginate')
 
 const MessageSchema = new mongoose.Schema({
 	body: {
@@ -20,4 +22,5 @@ const MessageSchema = new mongoose.Schema({
 	
 })
 
+MessageSchema.plugin(mongoosePaginate)
 mongoose.model('Messages', MessageSchema)

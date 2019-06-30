@@ -3,9 +3,13 @@ mongoose.set('useFindAndModify', false);
 const Bot =  mongoose.model('Bots')
 
 module.exports={
-	//Recover every bots that are in DB
+	/*Recover every bots that are in DB
+	 *Bot.paginate({query},{options},{callback})
+	*/
 	async retrieveBots(req,res){
-		const bots = await Bot.find()
+		//Get the page parameter in the request
+		const { page = 1 } = req.query
+		const bots = await Bot.paginate({},{page, limit: 10})
 
 		return res.json(bots)
 	},

@@ -19,7 +19,7 @@ app.use(cors())
 //database connection
 const options = { reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true }
 
-mongoose.connect('process.env.MONGO_URI', options)
+mongoose.connect('mongodb+srv://admin:lual1108@cluster0-aab5c.mongodb.net/test?retryWrites=true&w=majority', options)
 
 mongoose.set('useCreateIndex', true)
 
@@ -40,5 +40,5 @@ requireDir('./src/models')
 //Routes
 app.use('/api',require('./src/routes'))
 
-//Make the app listen the given port
+//Make the app listen the given port in .env otherwise, listen 3001
 app.listen(process.env.PORT || 3001)
